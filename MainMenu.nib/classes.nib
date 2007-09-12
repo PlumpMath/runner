@@ -1,0 +1,25 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {openPreferencesWindow = id; }; 
+            CLASS = MyApplication; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {prefsWindow = id; }; 
+            SUPERCLASS = NSApplication; 
+        }, 
+        {
+            ACTIONS = {cycle = id; pause = id; quit = id; }; 
+            CLASS = MyWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                cycleButton = NSButton; 
+                outputView = NSTextView; 
+                pauseButton = NSButton; 
+                statusText = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

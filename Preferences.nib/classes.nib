@@ -1,0 +1,23 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = MyApplication; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {prefsWindow = id; }; 
+            SUPERCLASS = NSApplication; 
+        }, 
+        {
+            ACTIONS = {
+                setAutoClose = id; 
+                setConfirmQuit = id; 
+                setDelayOutput = id; 
+                setDelayStart = id; 
+            }; 
+            CLASS = PrefsWindowController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

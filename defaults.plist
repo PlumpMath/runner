@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Arguments</key>
+	<array/>
+	<key>AutoClose</key>
+	<true/>
+	<key>ConfirmQuit</key>
+	<true/>
+	<key>CurrentDir</key>
+	<string></string>
+	<key>DelayStart</key>
+	<false/>
+	<key>NotifyClose</key>
+	<false/>
+	<key>Pathname</key>
+	<string>/home/johnw/bin/getmail</string>
+	<key>Title</key>
+	<string>Getmail</string>
+</dict>
+</plist>

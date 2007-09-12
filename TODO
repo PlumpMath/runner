@@ -1,0 +1,9 @@
+* An option to select if stdout and/or stderr are to be displayed.
+* An option to show stderr output in red.
+* An option to kill the underlying process if it goes idle (i.e., no
+  output received for a certain period of time).
+* An option to bounce in the dock on successful completion.
+* An option to log the output to a file.
+* An option to "nice" the process when it is run.
+
+* An option to only display the output window when output appears.
