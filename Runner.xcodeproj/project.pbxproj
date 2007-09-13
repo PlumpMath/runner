@@ -24,9 +24,9 @@
 		29B97319FDCFA39411CA2CEA /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* iWrapper_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iWrapper_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Runner_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Runner_Prefix.pch; sourceTree = "<group>"; };
 		3357E43608DFAE82000E7BB5 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = defaults.plist; sourceTree = "<group>"; };
-		337705AD08E9426000B4FF7D /* iWrapper.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = iWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		337705AD08E9426000B4FF7D /* Runner.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338750F008DE3F9A00BB1F44 /* MyWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyWindowController.m; sourceTree = "<group>"; };
 		338750F108DE3F9A00BB1F44 /* MyWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyWindowController.h; sourceTree = "<group>"; };
 		33D6DE8408DE9135009B4250 /* Preferences.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Preferences.nib; sourceTree = "<group>"; };
@@ -77,12 +77,12 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				337705AD08E9426000B4FF7D /* iWrapper.app */,
+				337705AD08E9426000B4FF7D /* Runner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* iWrapper */ = {
+		29B97314FDCFA39411CA2CEA /* Runner */ = {
 			isa = PBXGroup;
 			children = (
 				33D6DE9208DE93B7009B4250 /* MyApplication.h */,
@@ -95,13 +95,13 @@
 				33D6DE9508DE972E009B4250 /* PrefsWindowController.h */,
 				33D6DE9608DE972E009B4250 /* PrefsWindowController.m */,
 			);
-			name = iWrapper;
+			name = Runner;
 			sourceTree = "<group>";
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* iWrapper_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* Runner_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				338750F008DE3F9A00BB1F44 /* MyWindowController.m */,
 				338750F108DE3F9A00BB1F44 /* MyWindowController.h */,
@@ -132,9 +132,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* iWrapper */ = {
+		8D1107260486CEB800E47090 /* Runner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33179BC808E93C5F003BFD61 /* Build configuration list for PBXNativeTarget "iWrapper" */;
+			buildConfigurationList = 33179BC808E93C5F003BFD61 /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -144,10 +144,10 @@
 			);
 			dependencies = (
 			);
-			name = iWrapper;
+			name = Runner;
 			productInstallPath = "$(HOME)/Applications";
-			productName = iWrapper;
-			productReference = 337705AD08E9426000B4FF7D /* iWrapper.app */;
+			productName = Runner;
+			productReference = 337705AD08E9426000B4FF7D /* Runner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -155,12 +155,12 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 33179BCC08E93C5F003BFD61 /* Build configuration list for PBXProject "iWrapper" */;
+			buildConfigurationList = 33179BCC08E93C5F003BFD61 /* Build configuration list for PBXProject "Runner" */;
 			hasScannedForEncodings = 1;
-			mainGroup = 29B97314FDCFA39411CA2CEA /* iWrapper */;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Runner */;
 			projectDirPath = "";
 			targets = (
-				8D1107260486CEB800E47090 /* iWrapper */,
+				8D1107260486CEB800E47090 /* Runner */,
 			);
 		};
 /* End PBXProject section */
@@ -202,13 +202,13 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = iWrapper_Prefix.pch;
+				GCC_PREFIX_HEADER = Runner_Prefix.pch;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PREBINDING = NO;
-				PRODUCT_NAME = iWrapper;
+				PRODUCT_NAME = Runner;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -221,13 +221,13 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = iWrapper_Prefix.pch;
+				GCC_PREFIX_HEADER = Runner_Prefix.pch;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PREBINDING = NO;
-				PRODUCT_NAME = iWrapper;
+				PRODUCT_NAME = Runner;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -238,12 +238,12 @@
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = iWrapper_Prefix.pch;
+				GCC_PREFIX_HEADER = Runner_Prefix.pch;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = iWrapper;
+				PRODUCT_NAME = Runner;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
@@ -269,7 +269,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		33179BC808E93C5F003BFD61 /* Build configuration list for PBXNativeTarget "iWrapper" */ = {
+		33179BC808E93C5F003BFD61 /* Build configuration list for PBXNativeTarget "Runner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33179BC908E93C5F003BFD61 /* Development */,
@@ -279,7 +279,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		33179BCC08E93C5F003BFD61 /* Build configuration list for PBXProject "iWrapper" */ = {
+		33179BCC08E93C5F003BFD61 /* Build configuration list for PBXProject "Runner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33179BCD08E93C5F003BFD61 /* Development */,

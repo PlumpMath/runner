@@ -7,7 +7,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+char ** scriptArgs;
+
 int main(int argc, char *argv[])
 {
-    return NSApplicationMain(argc,  (const char **) argv);
+  scriptArgs = &argv[1];
+  return NSApplicationMain(argc,  (const char **) argv);
 }

@@ -1,9 +1,18 @@
 #!/bin/sh
 
+count=$1
+if [ -z "$count" ]; then
+    count=100
+fi
+
+echo This is droll, starting in 5 seconds:
+
 sleep 5
-for i in $(seq 1 100); do
+for i in $(seq 1 $count); do
     echo $i...
     sleep 1
 done
+
+echo "Droll is finished after $count iterations.  Wasn't that exciting?"
 
 exit $1

@@ -18,6 +18,8 @@
   NSDictionary * scriptProps;
 }
 
+- (void)windowDidResize:(NSNotification *)aNotification;
+
 - (IBAction)pause:(id)sender;
 - (IBAction)cycle:(id)sender;
 - (IBAction)quit:(id)sender;

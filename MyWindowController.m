@@ -1,5 +1,7 @@
 #import "MyWindowController.h"
 
+extern char ** scriptArgs;
+
 @implementation MyWindowController
 
 - (id)init
@@ -7,19 +9,13 @@
   self = [super init];
   assert(self != nil);
 
-  task = nil;
-  isSuspended = FALSE;
+  task		= nil;
+  isSuspended	= FALSE;
+  taskPipe	= nil;
 
   [[NSNotificationCenter defaultCenter] addObserver:self 
    selector:@selector(taskCompleted:) 
    name:NSTaskDidTerminateNotification 
-   object:nil];
-
-  taskPipe = nil;
-
-  [[NSNotificationCenter defaultCenter] addObserver:self 
-   selector:@selector(outputAvailable:) 
-   name:NSFileHandleReadCompletionNotification
    object:nil];
 
   [self readDetailsForScript:[[NSBundle mainBundle]
@@ -63,7 +59,6 @@
 - (void)dealloc
 {
   [task release];
-  [taskPipe release];
   [scriptProps release];
 
   [super dealloc];
@@ -71,7 +66,12 @@
 
 - (void)awakeFromNib
 {
-  [[self window] setTitle:[scriptProps objectForKey:@"Title"]];
+  NSMutableArray * args = [[NSMutableArray alloc] init];
+  int i;
+  for (i = 0; scriptArgs[i]; i++)
+    [args addObject:[NSString stringWithCString:scriptArgs[i]]];
+
+  [[self window] setTitle:[args componentsJoinedByString:@" "]];
 
   NSFont * theFont;
   float defaultFontSize;
@@ -87,8 +87,13 @@
 
   [outputView setFont:theFont];
 
-  [[self window] setFrameAutosaveName:@"MainWindow"];
-  [[self window] makeKeyAndOrderFront:nil];
+  NSSize size;
+  size.height = [[NSUserDefaults standardUserDefaults]
+		 integerForKey:@"LastKnownHeight"];
+  size.width  = [[NSUserDefaults standardUserDefaults]
+		 integerForKey:@"LastKnownWidth"];
+  if (size.height != 0 && size.width != 0)
+    [[self window] setContentSize:size];
 
   if ([[NSUserDefaults standardUserDefaults] boolForKey:@"DelayStart"]) {
     [cycleButton setTitle:@"Start"];
@@ -96,6 +101,18 @@
     [cycleButton setTitle:@"Interrupt"];
     [self startTask];
   }
+
+  [[self window] makeKeyAndOrderFront:nil];
+}
+
+- (void)windowDidResize:(NSNotification *)aNotification
+{
+  NSWindow * window = [aNotification object];
+
+  [[NSUserDefaults standardUserDefaults]
+   setInteger:[window frame].size.height forKey:@"LastKnownHeight"];
+  [[NSUserDefaults standardUserDefaults]
+   setInteger:[window frame].size.width forKey:@"LastKnownWidth"];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:
@@ -134,23 +151,38 @@
   }
   task = [[NSTask alloc] init];
 
+#if 0
   // Next thing is to tell our app what UNIX "thing" we want to execute.
   [task setLaunchPath:[scriptProps objectForKey:@"Pathname"]];
 
   NSArray * args = [scriptProps objectForKey:@"Arguments"];
   if (args)
     [task setArguments:args];
+#else
+  [task setLaunchPath:[NSString stringWithCString:scriptArgs[0]]];
+  if (scriptArgs[1]) {
+    NSMutableArray * args = [[NSMutableArray alloc] init];
+    int i;
+    for (i = 1; scriptArgs[i]; i++)
+      [args addObject:[NSString stringWithCString:scriptArgs[i]]];
+    [task setArguments:args];
+  }
+#endif
 
-  NSString * cwd = [scriptProps objectForKey:@"CurrentDir"];
-  if (cwd && [cwd length] > 0)
-    [task setCurrentDirectoryPath:[cwd stringByExpandingTildeInPath]];
+  //NSString * cwd = [scriptProps objectForKey:@"CurrentDir"];
+  //if (cwd && [cwd length] > 0)
+    [task setCurrentDirectoryPath:@"."];
 
-  [taskPipe release];
   taskPipe   = [[NSPipe alloc] init];
   readHandle = [taskPipe fileHandleForReading];
 
-  [task setStandardError:taskPipe];
   [task setStandardOutput:taskPipe];
+  [task setStandardError:taskPipe];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self 
+   selector:@selector(outputAvailable:) 
+   name:NSFileHandleReadCompletionNotification
+   object:readHandle];
 
   [readHandle readInBackgroundAndNotify];
 
@@ -220,6 +252,13 @@
     }
 
     [task terminate];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+     name:NSFileHandleReadCompletionNotification
+     object:readHandle];
+
+    [readHandle release];
+    [taskPipe release];
   }
 
   [NSApp terminate:self];
@@ -230,8 +269,6 @@
   NSData *   taskData; 
   NSString * newOutput; 
 
-  assert(readHandle != nil);
-
   taskData = [[aNotification userInfo]
 	      objectForKey:@"NSFileHandleNotificationDataItem"]; 
   if ([taskData length] == 0)
@@ -240,6 +277,11 @@
   // Insert the output into the outputView
   newOutput = [[NSString alloc] initWithData:taskData 
 	       encoding:NSMacOSRomanStringEncoding]; 
+
+#if 0
+  if ([aNotification object] == taskErrorPipe)
+    [newOutput setTextColor:[NSColor redColor]];
+#endif
 
   NSRange endRange;
   endRange.location = [[outputView textStorage] length];
@@ -250,7 +292,7 @@
 
   [newOutput release]; 
 
-  [readHandle readInBackgroundAndNotify]; 
+  [[aNotification object] readInBackgroundAndNotify]; 
 }
 
 - (void)taskCompleted:(NSNotification *)aNotification
