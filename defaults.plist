@@ -14,9 +14,5 @@
 	<false/>
 	<key>NotifyClose</key>
 	<false/>
-	<key>Pathname</key>
-	<string>/home/johnw/bin/getmail</string>
-	<key>Title</key>
-	<string>Getmail</string>
 </dict>
 </plist>

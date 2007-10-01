@@ -1,4 +1,5 @@
 #import "MyWindowController.h"
+#include <stdio.h>
 
 extern char ** scriptArgs;
 
@@ -7,34 +8,33 @@ extern char ** scriptArgs;
 - (id)init
 {
   self = [super init];
-  assert(self != nil);
+  if (self != nil) {
+    task	= nil;
+    isSuspended	= FALSE;
 
-  task		= nil;
-  isSuspended	= FALSE;
-  taskPipe	= nil;
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+     selector:@selector(taskCompleted:) 
+     name:NSTaskDidTerminateNotification object:nil];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self 
-   selector:@selector(taskCompleted:) 
-   name:NSTaskDidTerminateNotification 
-   object:nil];
+    [self readDetailsForScript:[[NSBundle mainBundle]
+				pathForResource:@"defaults" ofType:@"plist"]];
 
-  [self readDetailsForScript:[[NSBundle mainBundle]
-			      pathForResource:@"defaults" ofType:@"plist"]];
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 
-  NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-  NSMutableDictionary * appDefaults = [[NSMutableDictionary alloc] init];
-  [appDefaults
-   setObject:[scriptProps objectForKey:@"DelayStart"] forKey:@"DelayStart"];
-  [appDefaults
-   setObject:[scriptProps objectForKey:@"AutoClose"] forKey:@"AutoClose"];
-  [appDefaults
-   setObject:[scriptProps objectForKey:@"NotifyClose"] forKey:@"NotifyClose"];
-  [appDefaults
-   setObject:[scriptProps objectForKey:@"ConfirmQuit"] forKey:@"ConfirmQuit"];
-  [appDefaults setObject:@"Monaco" forKey:@"FontFace"];
-  [appDefaults setObject:[NSNumber numberWithFloat:12.0] forKey:@"FontSize"];
-  [defaults registerDefaults:appDefaults];
+    NSMutableDictionary * appDefaults = [[NSMutableDictionary alloc] init];
+    [appDefaults
+     setObject:[scriptProps objectForKey:@"DelayStart"] forKey:@"DelayStart"];
+    [appDefaults
+     setObject:[scriptProps objectForKey:@"AutoClose"] forKey:@"AutoClose"];
+    [appDefaults
+     setObject:[scriptProps objectForKey:@"NotifyClose"] forKey:@"NotifyClose"];
+    [appDefaults
+     setObject:[scriptProps objectForKey:@"ConfirmQuit"] forKey:@"ConfirmQuit"];
+    [appDefaults setObject:@"Monaco" forKey:@"FontFace"];
+    [appDefaults setObject:[NSNumber numberWithFloat:12.0] forKey:@"FontSize"];
 
+    [defaults registerDefaults:appDefaults];
+  }
   return self;
 }
 
@@ -66,12 +66,20 @@ extern char ** scriptArgs;
 
 - (void)awakeFromNib
 {
-  NSMutableArray * args = [[NSMutableArray alloc] init];
-  int i;
-  for (i = 0; scriptArgs[i]; i++)
-    [args addObject:[NSString stringWithCString:scriptArgs[i]]];
+  if (scriptArgs[0]) {
+    NSMutableArray * args = [[NSMutableArray alloc] init];
+    int i;
+    for (i = 0; scriptArgs[i]; i++) {
+      [args addObject:[NSString stringWithCString:scriptArgs[i]]];
+      // jww (2007-09-12): Don't break here to make the full title include all
+      // program arguments
+      break;
+    }
 
-  [[self window] setTitle:[args componentsJoinedByString:@" "]];
+    [[self window] setTitle:[args componentsJoinedByString:@" "]];
+  } else {
+    [[self window] setTitle:@"Welcome to Runner"];
+  }
 
   NSFont * theFont;
   float defaultFontSize;
@@ -121,12 +129,6 @@ extern char ** scriptArgs;
   return YES;
 }
 
-#if 0
-- (void)applicationDidFinishLaunching:(NSNotification*)notification
-{
-}
-#endif
-
 - (void)changeFont:(id)sender
 {
   NSLog(@"Change font request");
@@ -151,23 +153,28 @@ extern char ** scriptArgs;
   }
   task = [[NSTask alloc] init];
 
-#if 0
-  // Next thing is to tell our app what UNIX "thing" we want to execute.
-  [task setLaunchPath:[scriptProps objectForKey:@"Pathname"]];
+  int index = 0;
 
-  NSArray * args = [scriptProps objectForKey:@"Arguments"];
-  if (args)
-    [task setArguments:args];
-#else
-  [task setLaunchPath:[NSString stringWithCString:scriptArgs[0]]];
-  if (scriptArgs[1]) {
-    NSMutableArray * args = [[NSMutableArray alloc] init];
-    int i;
-    for (i = 1; scriptArgs[i]; i++)
-      [args addObject:[NSString stringWithCString:scriptArgs[i]]];
-    [task setArguments:args];
+  while (scriptArgs[index] && scriptArgs[index][0] == '-')
+    index++;
+  
+  if (scriptArgs[index]) {
+    FILE * fp = fopen("/tmp/debug", "w");
+    fprintf(fp, "file: ");
+    fprintf(fp, scriptArgs[index]);
+    fprintf(fp, "\n");
+    fclose(fp);
+    [task setLaunchPath:[NSString stringWithCString:scriptArgs[index++]]];
+    if (scriptArgs[1]) {
+      NSMutableArray * args = [[NSMutableArray alloc] init];
+      for (; scriptArgs[index]; index++)
+	[args addObject:[NSString stringWithCString:scriptArgs[index]]];
+      [task setArguments:args];
+    }
+  } else {
+    [task setLaunchPath:
+     [[NSBundle mainBundle] pathForResource:@"defaultscript" ofType:@"sh"]];
   }
-#endif
 
   //NSString * cwd = [scriptProps objectForKey:@"CurrentDir"];
   //if (cwd && [cwd length] > 0)

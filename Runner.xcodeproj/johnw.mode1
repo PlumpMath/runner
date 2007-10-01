@@ -315,8 +315,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>28</integer>
-									<integer>27</integer>
+									<integer>10</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -355,7 +355,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MyWindowController.m</string>
+								<string>Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -363,18 +363,19 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MyWindowController.m</string>
+										<string>Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>33F49B370C98BD02006E53D0</string>
+										<string>33A9F7790C9A31EA004140FF</string>
 										<key>history</key>
 										<array>
 											<string>336560A60B759B76002A6082</string>
 											<string>336560A70B759B76002A6082</string>
 											<string>336560A90B759B76002A6082</string>
 											<string>33A9CEA10C98BB7C00E41171</string>
-											<string>33A9CEBE0C98BC0400E41171</string>
+											<string>33F49B670C98C1E7006E53D0</string>
+											<string>332E1D610C9A31080094010B</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -440,9 +441,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>33F49B380C98BD02006E53D0</string>
+				<string>33A9F7770C9A3141004140FF</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>33F49B390C98BD02006E53D0</string>
+				<string>33A9F7780C9A3141004140FF</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -561,7 +562,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>211336449.84960401</real>
+	<real>211431914.420941</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -576,9 +577,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>33F49B400C98BD02006E53D0</string>
-		<string>3387510508DE55D000BB1F44</string>
-		<string>1CD10A99069EF8BA00B06720</string>
+		<string>3387511F08DE5FA300BB1F44</string>
 		<string>/Volumes/Users/johnw/Projects/Runner/Runner.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -603,25 +602,23 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MyWindowController.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {500, 218}}</string>
+								<string>{{0, 0}, {851, 235}}</string>
 								<key>RubberWindowFrame</key>
-								<string>381 293 500 500 0 0 1440 878 </string>
+								<string>381 276 851 517 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>218pt</string>
+							<string>235pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -636,9 +633,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 223}, {500, 236}}</string>
+								<string>{{0, 240}, {851, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>381 293 500 500 0 0 1440 878 </string>
+								<string>381 276 851 517 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -647,7 +644,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>459pt</string>
+					<string>476pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -661,14 +658,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>3387511F08DE5FA300BB1F44</string>
-				<string>33A9CE630C98AD9D00E41171</string>
+				<string>33A9F7740C9A3139004140FF</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.build</string>
 			<key>WindowString</key>
-			<string>381 293 500 500 0 0 1440 878 </string>
+			<string>381 276 851 517 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>3387511F08DE5FA300BB1F44</string>
 			<key>WindowToolIsVisible</key>
@@ -783,7 +780,7 @@
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -913,7 +910,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {440, 358}}</string>
 								<key>RubberWindowFrame</key>
-								<string>127 187 440 400 0 0 1280 832 </string>
+								<string>151 207 440 400 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -936,11 +933,11 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>3387510308DE55D000BB1F44</string>
-				<string>3357E44108DFBE54000E7BB5</string>
+				<string>33F49B750C98C3DC006E53D0</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>WindowString</key>
-			<string>127 187 440 400 0 0 1280 832 </string>
+			<string>151 207 440 400 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>3387510308DE55D000BB1F44</string>
 			<key>WindowToolIsVisible</key>
@@ -1042,7 +1039,7 @@
 			<key>WindowToolGUID</key>
 			<string>3387510508DE55D000BB1F44</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

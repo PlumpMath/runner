@@ -13,6 +13,8 @@
 		33D6DE8508DE9135009B4250 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 33D6DE8408DE9135009B4250 /* Preferences.nib */; };
 		33D6DE9408DE93B7009B4250 /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 33D6DE9308DE93B7009B4250 /* MyApplication.m */; };
 		33D6DE9708DE972E009B4250 /* PrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33D6DE9608DE972E009B4250 /* PrefsWindowController.m */; };
+		33F49B580C98C168006E53D0 /* Runner Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 33F49B570C98C168006E53D0 /* Runner Icon.icns */; };
+		33F49B6C0C98C375006E53D0 /* defaultscript.sh in Resources */ = {isa = PBXBuildFile; fileRef = 33F49B6B0C98C375006E53D0 /* defaultscript.sh */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		33D6DE9308DE93B7009B4250 /* MyApplication.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
 		33D6DE9508DE972E009B4250 /* PrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsWindowController.h; sourceTree = "<group>"; };
 		33D6DE9608DE972E009B4250 /* PrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsWindowController.m; sourceTree = "<group>"; };
+		33F49B570C98C168006E53D0 /* Runner Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Runner Icon.icns"; sourceTree = "<group>"; };
+		33F49B6B0C98C375006E53D0 /* defaultscript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = defaultscript.sh; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,7 @@
 		29B97314FDCFA39411CA2CEA /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				33F49B570C98C168006E53D0 /* Runner Icon.icns */,
 				33D6DE9208DE93B7009B4250 /* MyApplication.h */,
 				33D6DE9308DE93B7009B4250 /* MyApplication.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -112,6 +117,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33F49B6B0C98C375006E53D0 /* defaultscript.sh */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				3357E43608DFAE82000E7BB5 /* defaults.plist */,
 				29B97319FDCFA39411CA2CEA /* MainMenu.nib */,
@@ -173,6 +179,8 @@
 				3387515308DE6E3300BB1F44 /* MainMenu.nib in Resources */,
 				33D6DE8508DE9135009B4250 /* Preferences.nib in Resources */,
 				3357E43708DFAE82000E7BB5 /* defaults.plist in Resources */,
+				33F49B580C98C168006E53D0 /* Runner Icon.icns in Resources */,
+				33F49B6C0C98C375006E53D0 /* defaultscript.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +265,10 @@
 		33179BCE08E93C5F003BFD61 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
 			};
 			name = Deployment;
 		};
