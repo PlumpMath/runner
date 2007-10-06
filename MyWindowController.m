@@ -1,7 +1,30 @@
 #import "MyWindowController.h"
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <sys/unistd.h>
 
 extern char ** scriptArgs;
+
+NSString * FindExecutableInPath(NSString * name)
+{
+  if ([name hasPrefix:@"/"])
+    return name;
+
+  NSString * pathEnv = [[[NSProcessInfo processInfo] environment]
+			objectForKey:@"PATH"];
+  NSArray * paths = [pathEnv componentsSeparatedByString:@":"];
+
+  NSEnumerator * e = [paths objectEnumerator];
+  NSString * path;
+  while ((path = [e nextObject]) != nil)
+    {
+      NSString * executablePath = [path stringByAppendingPathComponent:name];
+      if (access([executablePath cString], X_OK) != -1)
+	return executablePath;
+    }
+  return nil;
+}
 
 @implementation MyWindowController
 
@@ -143,6 +166,17 @@ extern char ** scriptArgs;
    forKey:@"FontSize"];
 }
 
+- (void)outputString:(NSString *)aString
+{
+  NSRange endRange;
+  endRange.location = [[outputView textStorage] length];
+  endRange.length = 0;
+  [outputView replaceCharactersInRange:endRange withString:aString];
+  endRange.length = [aString length];
+
+  [outputView scrollRangeToVisible:endRange];
+}
+
 - (void)startTask
 {
   [outputView setString:@""];
@@ -159,17 +193,19 @@ extern char ** scriptArgs;
     index++;
   
   if (scriptArgs[index]) {
-    FILE * fp = fopen("/tmp/debug", "w");
-    fprintf(fp, "file: ");
-    fprintf(fp, scriptArgs[index]);
-    fprintf(fp, "\n");
-    fclose(fp);
-    [task setLaunchPath:[NSString stringWithCString:scriptArgs[index++]]];
-    if (scriptArgs[1]) {
-      NSMutableArray * args = [[NSMutableArray alloc] init];
-      for (; scriptArgs[index]; index++)
-	[args addObject:[NSString stringWithCString:scriptArgs[index]]];
-      [task setArguments:args];
+    NSString * launchPath =
+      FindExecutableInPath([NSString stringWithCString:scriptArgs[index++]]);
+    if (launchPath == nil) {
+      [self outputString:@"Could not find executable on the PATH"];
+      return;
+    } else {
+      [task setLaunchPath:launchPath];
+      if (scriptArgs[1]) {
+	NSMutableArray * args = [[NSMutableArray alloc] init];
+	for (; scriptArgs[index]; index++)
+	  [args addObject:[NSString stringWithCString:scriptArgs[index]]];
+	[task setArguments:args];
+      }
     }
   } else {
     [task setLaunchPath:
@@ -290,13 +326,7 @@ extern char ** scriptArgs;
     [newOutput setTextColor:[NSColor redColor]];
 #endif
 
-  NSRange endRange;
-  endRange.location = [[outputView textStorage] length];
-  endRange.length = 0;
-  [outputView replaceCharactersInRange:endRange withString:newOutput];
-  endRange.length = [newOutput length];
-  [outputView scrollRangeToVisible:endRange];
-
+  [self outputString:newOutput];
   [newOutput release]; 
 
   [[aNotification object] readInBackgroundAndNotify]; 
