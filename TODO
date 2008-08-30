@@ -1,9 +1,16 @@
-* An option to select if stdout and/or stderr are to be displayed.
-* An option to show stderr output in red.
-* An option to kill the underlying process if it goes idle (i.e., no
-  output received for a certain period of time).
-* An option to bounce in the dock on successful completion.
-* An option to log the output to a file.
-* An option to "nice" the process when it is run.
+RUNNER  -*- mode: org; fill-column: 78 -*-
 
-* An option to only display the output window when output appears.
+#+STARTUP: overview
+#+ARCHIVE: TODO-OLD::
+#+SEQ_TODO: TODO(@) STARTED(@) WAITING(@) DELEGATED(@) | DONE(@) DEFERRED(@) CANCELLED(@) WONTFIX(@) WORKSFORME(@) INVALID(@) DUPLICATE(@) NOTE
+#+TAGS: FEATURE(f) DOCS(d) WEBSITE(w) BUILD(b)
+#+CATEGORY: Runner
+
+* TODO Add an option to select if stdout and/or stderr are to be displayed
+* TODO Add an option to show stderr output in red
+* TODO Add an option to kill the underlying process if it goes idle
+  That is, no output received for a certain period of time.
+* TODO Add an option to bounce in the dock on successful completion
+* TODO Add an option to log the output to a file
+* TODO Add an option to "nice" the process when it is run
+* TODO Add an option to only display the output window when output appears
